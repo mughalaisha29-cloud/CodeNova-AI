@@ -1,0 +1,61 @@
+LEARNOVA AI — LOGIN WEBSITE RUN GUIDE (Windows + VS Code)
+
+IMPORTANT:
+Extract the ZIP into a NEW folder. After opening the folder in VS Code, the Explorer should show package.json at the top level, alongside app and README.md.
+If package.json is inside another Learnova-AI-Website folder, open that INNER folder in VS Code instead.
+
+STEP 1 — Extract ZIP
+1. Right-click Learnova-AI-Ready.zip.
+2. Choose Extract All.
+3. Extract to a new folder such as Downloads\Learnova-AI-Ready.
+
+STEP 2 — Open correct folder
+1. Open VS Code.
+2. Choose File > Open Folder.
+3. Select the extracted folder that directly contains package.json and the app folder.
+4. Click Select Folder.
+
+STEP 3 — Open terminal
+In VS Code choose Terminal > New Terminal.
+Run this command first:
+
+  dir
+
+Look at the list. You MUST see package.json and the app folder.
+If you do not see package.json, you are in the wrong folder. In VS Code use File > Open Folder and select the folder that contains it.
+
+STEP 4 — Install dependencies (only once, or after package changes)
+Run:
+
+  npm.cmd install
+
+Wait until it finishes. Do not run the next command before this completes.
+
+STEP 5 — Start the website
+Run:
+
+  npm.cmd run dev
+
+Keep this terminal open while using the website. When it shows a local address, open Google Chrome and go to:
+
+  http://localhost:3000
+
+STEP 6 — Test login/register
+1. Click Sign up / Create account.
+2. Use TEST details only (do not use a real or reused password).
+3. Submit registration and check the success message.
+4. Return to Login and enter the same test email/password.
+5. Try a wrong password and check that an error message appears.
+6. Toggle light/dark theme.
+7. Continue with Google is a placeholder until Google OAuth and a secure backend are configured; it is not a real Google login yet.
+
+STEP 7 — Stop the local server
+When finished, return to the terminal and press Ctrl+C.
+
+COMMON ERROR: ENOENT package.json
+This means the terminal is in the wrong folder. Type dir. If package.json is missing, open the correct inner folder using File > Open Folder. Do not repeatedly run npm install in the wrong folder.
+
+NOTES
+- Requires Node.js and npm installed. Check with: node -v and npm -v
+- This is a local demo, not production-secure authentication. Demo accounts may be saved in the browser only.
+- Keep the terminal open while http://localhost:3000 is in use.
