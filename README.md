@@ -30,7 +30,7 @@ A Roman Urdu step-by-step guide is included as `RUN-GUIDE-URDU.txt`.
 5. Switch between light and dark themes.
 
 ## Important limitations
-Deployment update
+
 
 - This is a local front-end demo. Do not use real or reused passwords. It is not production-secure authentication.
 - **Continue with Google is not connected yet**. Real Google sign-in requires OAuth configuration and a secure authentication backend.
