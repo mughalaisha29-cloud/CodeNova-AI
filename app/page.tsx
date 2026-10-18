@@ -682,7 +682,7 @@ export default function Home() {
             <div style={{ width: '38px', height: '38px', borderRadius: '50%', boxShadow: '0 0 15px rgba(236, 72, 153, 0.5)', overflow: 'hidden' }}>
               <img src="/logo.png" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Learnova AI" />
             </div>
-            <span style={{ fontSize: '20px', fontWeight: 'bold', color: '#fff' }}>learnova<span style={{ color: '#ec4899' }}>AI</span></span>
+            <span style={{ fontSize: '20px', fontWeight: 'bold', color: '#fff' }}>Code<span style={{ color: '#ec4899' }}>Nova</span></span>
           </div>
           <nav style={{ display: 'flex', alignItems: 'center', gap: '25px' }}>
             <button onClick={() => handlePublicNav('home')} style={{ background: 'none', border: 'none', color: mainTab === 'home' ? '#ec4899' : '#cbd5e1', cursor: 'pointer', fontSize: '14px', fontWeight: 500 }}>Home</button>
@@ -845,17 +845,19 @@ export default function Home() {
 
         {!isLoggedIn && mainTab === 'languages' && renderLanguagesSection()}
 
-        {!isLoggedIn && mainTab === 'about' && ( 
-          <div style={{ padding: '60px 40px', maxWidth: '900px', margin: '0 auto', color: '#cbd5e1', lineHeight: '1.8' }}> 
-            <h1 style={{ textAlign: 'center', color: '#fff' }}>About Us</h1> 
-            <p>Learnova AI is a virtual coding laboratory built to make programming simple, visual, and highly interactive. We empower students and developers with structured programming resources and advanced AI assistance.</p> 
-          </div> 
+        {!isLoggedIn && mainTab === 'about' && (
+          <section style={{ width: '100%', boxSizing: 'border-box', padding: '60px 24px', maxWidth: '980px', margin: '0 auto', color: '#cbd5e1', lineHeight: '1.8' }}>
+            <h1 style={{ textAlign: 'center', color: '#fff', marginBottom: '24px' }}>About Us</h1>
+            <p style={{ fontSize: '16px', margin: 0 }}>
+              CodeNova is a virtual coding laboratory designed to make programming simple, practical, visual, and interactive for students and aspiring developers. It brings programming languages and learning resources together in one place, with examples organised for different learning levels. Our goal is to help learners understand core concepts, practise writing code, explore useful programs, and build confidence through hands-on learning. CodeNova also provides an AI assistance interface intended to help users explore coding questions and understand possible solutions, making the learning journey more approachable and engaging.
+            </p>
+          </section>
         )}
 
         {!isLoggedIn && mainTab === 'contact' && (
-          <div style={{ padding: '60px 40px', maxWidth: '600px', margin: '0 auto' }}>
-            <div style={{ background: '#0f172a', padding: '35px', borderRadius: '20px', border: '1px solid #1e293b' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#fff', marginBottom: '8px' }}>Contact Us</h2>
+          <section style={{ width: '100%', minHeight: 'calc(100vh - 140px)', boxSizing: 'border-box', padding: '40px 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: '100%', maxWidth: '680px', boxSizing: 'border-box', background: '#0f172a', padding: 'clamp(28px, 5vw, 44px)', borderRadius: '22px', border: '1px solid #1e293b', boxShadow: '0 18px 45px rgba(0,0,0,0.35)' }}>
+              <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#fff', marginBottom: '8px', textAlign: 'center' }}>Contact Us</h2>
               <form onSubmit={(e) => { e.preventDefault(); setNotice('success:Message sent successfully!'); setContactEmail(''); setContactMsg(''); }}>
                 <input type="email" value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} placeholder="Gmail Address @" required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '13.5px', marginBottom: '15px' }} />
                 <textarea value={contactMsg} onChange={(e) => setContactMsg(e.target.value)} placeholder="Type your query here..." required rows={4} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '13.5px', resize: 'none', marginBottom: '15px' }} />
@@ -863,7 +865,7 @@ export default function Home() {
                 <button type="submit" style={{ width: '100%', background: '#4f46e5', color: '#fff', border: 'none', padding: '12px', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', fontSize: '14px' }}>Send Gmail Inquiry</button>
               </form>
             </div>
-          </div>
+          </section>
         )}
 
         {/* LOGGED IN ADVANCED WORKSPACE */}
