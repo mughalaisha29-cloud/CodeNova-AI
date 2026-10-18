@@ -843,31 +843,240 @@ export default function Home() {
           </div>
         )}
 
-        {!isLoggedIn && mainTab === 'languages' && renderLanguagesSection()}
+               {!isLoggedIn && mainTab === 'languages' && renderLanguagesSection()}
 
         {!isLoggedIn && mainTab === 'about' && (
-          <section style={{ width: '100%', boxSizing: 'border-box', padding: '60px 24px', maxWidth: '980px', margin: '0 auto', color: '#cbd5e1', lineHeight: '1.8' }}>
-            <h1 style={{ textAlign: 'center', color: '#fff', marginBottom: '24px' }}>About Us</h1>
-            <p style={{ fontSize: '16px', margin: 0 }}>
-              CodeNova is a virtual coding laboratory designed to make programming simple, practical, visual, and interactive for students and aspiring developers. It brings programming languages and learning resources together in one place, with examples organised for different learning levels. Our goal is to help learners understand core concepts, practise writing code, explore useful programs, and build confidence through hands-on learning. CodeNova also provides an AI assistance interface intended to help users explore coding questions and understand possible solutions, making the learning journey more approachable and engaging.
-            </p>
-          </section>
-        )}
+          <section
+            style={{
+              width: '100%',
+              boxSizing: 'border-box',
+              padding: '50px 24px 60px',
+              maxWidth: '1200px',
+              margin: '0 auto',
+              color: '#cbd5e1',
+              lineHeight: '1.8',
+            }}
+          >
+            <h1
+              style={{
+                textAlign: 'center',
+                color: '#ffffff',
+                fontSize: 'clamp(30px, 4vw, 42px)',
+                marginBottom: '12px',
+              }}
+            >
+              About Us
+            </h1>
 
-        {!isLoggedIn && mainTab === 'contact' && (
-          <section style={{ width: '100%', minHeight: 'calc(100vh - 140px)', boxSizing: 'border-box', padding: '40px 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ width: '100%', maxWidth: '680px', boxSizing: 'border-box', background: '#0f172a', padding: 'clamp(28px, 5vw, 44px)', borderRadius: '22px', border: '1px solid #1e293b', boxShadow: '0 18px 45px rgba(0,0,0,0.35)' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#fff', marginBottom: '8px', textAlign: 'center' }}>Contact Us</h2>
-              <form onSubmit={(e) => { e.preventDefault(); setNotice('success:Message sent successfully!'); setContactEmail(''); setContactMsg(''); }}>
-                <input type="email" value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} placeholder="Gmail Address @" required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '13.5px', marginBottom: '15px' }} />
-                <textarea value={contactMsg} onChange={(e) => setContactMsg(e.target.value)} placeholder="Type your query here..." required rows={4} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '13.5px', resize: 'none', marginBottom: '15px' }} />
-                {renderNotice()}
-                <button type="submit" style={{ width: '100%', background: '#4f46e5', color: '#fff', border: 'none', padding: '12px', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', fontSize: '14px' }}>Send Gmail Inquiry</button>
-              </form>
+            <p
+              style={{
+                textAlign: 'center',
+                color: '#94a3b8',
+                fontSize: '15px',
+                maxWidth: '750px',
+                margin: '0 auto 36px',
+              }}
+            >
+              Discover our mission, learning environment, and commitment to
+              making programming easier and more accessible for everyone.
+            </p>
+
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+                gap: '22px',
+                alignItems: 'stretch',
+              }}
+            >
+              {[
+                {
+                  title: '1. Introduction to Learnova AI',
+                  text: 'Learnova AI is a virtual coding laboratory designed to make programming simple, visual, and interactive for students and developers. It provides a modern learning environment where users can explore programming concepts, practise coding, and improve their technical skills. The platform brings educational resources and AI assistance together to support learning. Beginners can explore fundamental concepts through explanations and practical examples. Users can learn at their own pace and gradually develop their abilities. Our goal is to make coding approachable, engaging, and enjoyable for learners with different levels of experience.',
+                },
+                {
+                  title: '2. Our Mission',
+                  text: 'The mission of Learnova AI is to make programming education accessible, effective, and enjoyable for learners. We believe students should have opportunities to develop digital skills and explore technology. Our platform focuses on simplifying difficult concepts through organised learning resources and practical coding exercises. We aim to make the first steps of programming less confusing for beginners. We encourage curiosity, creativity, and independent problem-solving. Through regular practice, learners can build confidence and improve their technical knowledge. Our mission is to support students as they work toward their educational and professional goals.',
+                },
+                {
+                  title: '3. Interactive Coding Environment',
+                  text: 'Learnova AI offers a digital learning environment where users can explore programming concepts and practise writing code. Instead of relying only on theoretical information, learners can study examples and experiment with different ideas. This practical approach helps students understand programming logic and syntax. Users can examine code, identify mistakes, and learn how solutions are structured. Breaking complex topics into smaller steps can make learning easier. The platform aims to provide a comfortable workspace for learners with different skill levels. With consistent practice, users can gradually turn their knowledge into practical programming skills.',
+                },
+                {
+                  title: '4. AI-Powered Learning Assistance',
+                  text: 'Artificial intelligence is an important part of the Learnova AI learning experience. The platform includes an AI assistance interface intended to help users explore programming questions and understand possible solutions. AI tools can explain code, clarify difficult concepts, and suggest ways to approach common programming problems when connected to a suitable AI service. Learners can use explanations to understand why a solution works instead of simply copying code. Different approaches can also help users expand their understanding. AI assistance is designed to support independent learning. Our goal is to make technical information easier to explore and understand.',
+                },
+                {
+                  title: '5. Learning Programming Languages',
+                  text: 'Learnova AI helps learners explore programming languages and web technologies. HTML, CSS, JavaScript, Python, and other languages provide useful foundations for creating websites, applications, and software solutions. Each technology has its own features and purposes. Learners can begin with fundamental concepts before exploring more advanced topics. Structured examples can help users understand syntax, logic, and common programming patterns. Regular practice makes it easier to recognise how different languages work. Our platform encourages students to explore technologies that match their interests and learning goals.',
+                },
+                {
+                  title: '6. Building Problem-Solving Skills',
+                  text: 'Problem-solving is one of the most important skills in programming. Developers must analyse a situation, identify a challenge, and organise a logical solution. Learnova AI encourages learners to approach problems step by step. Dividing a complicated task into smaller parts can make it easier to understand and solve. Students can practise examining code and comparing different approaches. Mistakes are a natural part of learning and can provide valuable lessons. With regular practice, learners can strengthen logical reasoning, analytical thinking, patience, and confidence. These abilities are useful in programming and many other areas of life.',
+                },
+                {
+                  title: '7. Resources for Students and Developers',
+                  text: 'Learnova AI brings programming information and learning resources together in one convenient environment. These resources can include explanations, code examples, exercises, and introductions to important technical concepts. Students can use them to review classroom topics and practise their skills. Developers can explore examples and refresh their understanding of different technologies. Well-organised material makes it easier to find information relevant to a learning goal. Practical examples help connect theoretical concepts with real programming tasks. Our aim is to encourage continuous improvement and make learning resources easier to explore.',
+                },
+                {
+                  title: '8. Creativity and Innovation',
+                  text: 'Creativity and innovation are important parts of programming. Coding allows learners to turn their ideas into websites, applications, interactive tools, and other digital projects. Learnova AI encourages students to explore possibilities and develop their own approaches to solving problems. Practical projects can help learners apply concepts they have studied. Experimenting with different solutions also builds confidence and curiosity. Rather than memorising syntax alone, learners can focus on understanding how technology can be used to create something useful. Every project offers an opportunity to practise, discover new ideas, and develop technical abilities.',
+                },
+                {
+                  title: '9. Preparing for Future Opportunities',
+                  text: 'Technology continues to influence education, business, communication, and everyday life. Learning programming can help students explore opportunities in web development, software engineering, application development, and other technology-related fields. Learnova AI aims to help learners establish a foundation in programming and digital skills. Practical exercises can encourage critical thinking, patience, and attention to detail. These abilities can be useful in academic and professional environments. Learners can continue developing their knowledge as technologies change. Our goal is to help users become more confident and better prepared to explore future learning and career opportunities.',
+                },
+                {
+                  title: '10. Our Vision for the Future',
+                  text: 'Our vision is to develop Learnova AI into an engaging virtual coding laboratory that supports programming education. We aim to bring educational resources, practical learning, and AI assistance together in one environment. We want beginners to feel comfortable taking their first steps while experienced learners continue exploring new concepts. Effective learning should encourage questions, creativity, experimentation, and practical understanding. We hope to keep improving the platform with useful learning features and organised resources. As technology evolves, we want to help learners adapt and grow. Ultimately, our goal is to encourage the next generation of programmers, innovators, and technology enthusiasts.',
+                },
+              ].map((item, index) => (
+                <article
+                  key={index}
+                  style={{
+                    boxSizing: 'border-box',
+                    height: '100%',
+                    padding: '24px',
+                    background: 'linear-gradient(145deg, #111c32, #0f172a)',
+                    border: '1px solid #263650',
+                    borderRadius: '18px',
+                    boxShadow: '0 10px 28px rgba(0, 0, 0, 0.18)',
+                    transition: 'transform 0.2s ease, border-color 0.2s ease',
+                  }}
+                >
+                  <h2
+                    style={{
+                      color: '#a5b4fc',
+                      fontSize: '19px',
+                      lineHeight: '1.5',
+                      margin: '0 0 14px',
+                    }}
+                  >
+                    {item.title}
+                  </h2>
+
+                  <p
+                    style={{
+                      fontSize: '14px',
+                      color: '#cbd5e1',
+                      margin: 0,
+                      lineHeight: '1.9',
+                      overflowWrap: 'anywhere',
+                    }}
+                  >
+                    {item.text}
+                  </p>
+                </article>
+              ))}
             </div>
           </section>
         )}
 
+        {!isLoggedIn && mainTab === 'contact' && (
+          <section
+            style={{
+              width: '100%',
+              minHeight: 'calc(100vh - 140px)',
+              boxSizing: 'border-box',
+              padding: '40px 20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div
+              style={{
+                width: '100%',
+                maxWidth: '680px',
+                boxSizing: 'border-box',
+                background: '#0f172a',
+                padding: 'clamp(28px, 5vw, 44px)',
+                borderRadius: '22px',
+                border: '1px solid #1e293b',
+                boxShadow: '0 18px 45px rgba(0,0,0,0.35)',
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: '24px',
+                  fontWeight: 'bold',
+                  color: '#fff',
+                  marginBottom: '8px',
+                  textAlign: 'center',
+                }}
+              >
+                Contact Us
+              </h2>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setNotice('success:Message sent successfully!');
+                  setContactEmail('');
+                  setContactMsg('');
+                }}
+              >
+                <input
+                  type="email"
+                  value={contactEmail}
+                  onChange={(e) => setContactEmail(e.target.value)}
+                  placeholder="Gmail Address @"
+                  required
+                  style={{
+                    width: '100%',
+                    boxSizing: 'border-box',
+                    padding: '10px',
+                    borderRadius: '8px',
+                    border: '1px solid #334155',
+                    background: '#1e293b',
+                    color: '#fff',
+                    fontSize: '13.5px',
+                    marginBottom: '15px',
+                  }}
+                />
+
+                <textarea
+                  value={contactMsg}
+                  onChange={(e) => setContactMsg(e.target.value)}
+                  placeholder="Type your query here..."
+                  required
+                  rows={4}
+                  style={{
+                    width: '100%',
+                    boxSizing: 'border-box',
+                    padding: '10px',
+                    borderRadius: '8px',
+                    border: '1px solid #334155',
+                    background: '#1e293b',
+                    color: '#fff',
+                    fontSize: '13.5px',
+                    resize: 'vertical',
+                    marginBottom: '15px',
+                  }}
+                />
+
+                {renderNotice()}
+
+                <button
+                  type="submit"
+                  style={{
+                    width: '100%',
+                    background: '#4f46e5',
+                    color: '#fff',
+                    border: 'none',
+                    padding: '12px',
+                    borderRadius: '8px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                  }}
+                >
+                  Send Gmail Inquiry
+                </button>
+              </form>
+            </div>
+          </section>
+        )}
         {/* LOGGED IN ADVANCED WORKSPACE */}
         {isLoggedIn && (
           <div className="workspace" style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
