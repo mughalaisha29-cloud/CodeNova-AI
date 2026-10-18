@@ -66,21 +66,60 @@ type View =
   | 'ai-studio'
   | 'settings';
 
+
 const nav: { id: View; label: string; icon: typeof LayoutDashboard }[] = [
   { id: 'dashboard', label: 'Overview', icon: LayoutDashboard },
   { id: 'languages-hub', label: 'Languages & Programs Hub', icon: BookOpen },
+
+  // Web Development
   { id: 'Html', label: 'HTML', icon: FileText },
   { id: 'CSS', label: 'CSS', icon: FileText },
-  { id: 'Java Script', label: 'Java Script', icon: FileText },
-  { id: 'Python', label: 'Python', icon: FileText },
+  { id: 'Java Script', label: 'JavaScript', icon: FileText },
   { id: 'PHP', label: 'PHP', icon: FileText },
   { id: 'SQL', label: 'SQL', icon: FileText },
   { id: 'Node.js', label: 'Node.js', icon: FileText },
-  { id: 'Ruby', label: 'Ruby', icon: FileText },
-  { id: 'Machine-Learning', label: 'Machine-Learning', icon: BrainCircuit },
-  { id: 'LLM', label: 'LLM', icon: BrainCircuit },
+  { id: 'XML', label: 'XML', icon: FileText },
+  { id: 'XHTML', label: 'XHTML', icon: FileText },
+
+  // Compiled Languages
+  { id: 'C', label: 'C Language', icon: Code },
+  { id: 'C++', label: 'C++', icon: Code },
+  { id: 'C#', label: 'C#', icon: Code },
+  { id: '.NET', label: '.NET', icon: Code },
+  { id: 'Java', label: 'Java', icon: Code },
+  { id: 'ALGOL', label: 'ALGOL', icon: Code },
+  { id: 'COBOL', label: 'COBOL', icon: Code },
+  { id: 'Fortran', label: 'Fortran', icon: Code },
+  { id: 'Visual Basic', label: 'Visual Basic', icon: Code },
+  { id: 'Smalltalk', label: 'Smalltalk', icon: Code },
+
+  // Interpreted Languages
+  { id: 'Python', label: 'Python', icon: Code },
+  { id: 'Ruby', label: 'Ruby', icon: Code },
+  { id: 'Perl', label: 'Perl', icon: Code },
+  { id: 'Pascal', label: 'Pascal', icon: Code },
+  { id: 'Lisp', label: 'Lisp', icon: Code },
+  { id: 'BASIC', label: 'BASIC', icon: Code },
+  { id: 'APL', label: 'APL', icon: Code },
+
+  // Scripting Languages
+  { id: 'VBScript', label: 'VBScript', icon: Code },
+  { id: 'PowerShell', label: 'Windows PowerShell', icon: Code },
+  { id: 'AutoIt', label: 'AutoIt', icon: Code },
+  { id: 'R', label: 'R Language', icon: Code },
+
+  // Object-Oriented Programming
+  { id: 'Scala', label: 'Scala', icon: Code },
+
+  // AI Tools
+  { id: 'Machine-Learning', label: 'Machine Learning', icon: BrainCircuit },
+  { id: 'LLM', label: 'Large Language Models', icon: BrainCircuit },
+
+  // Other
+  { id: 'ai-studio', label: 'AI Studio', icon: BrainCircuit },
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
+
 
 interface ProgramDetail {
   id: number;
