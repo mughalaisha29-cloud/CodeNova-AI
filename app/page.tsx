@@ -30,7 +30,6 @@ type LevelName = 'low' | 'beginner' | 'intermediate';
 
 type View =
   | 'dashboard'
-  | 'languages-hub'
   | 'Html'
   | 'CSS'
   | 'Java Script'
@@ -69,9 +68,7 @@ type View =
 
 const nav: { id: View; label: string; icon: typeof LayoutDashboard }[] = [
   { id: 'dashboard', label: 'Overview', icon: LayoutDashboard },
-  { id: 'languages-hub', label: 'Languages & Programs Hub', icon: BookOpen },
-
-  // Web Development
+ 
   { id: 'Html', label: 'HTML', icon: FileText },
   { id: 'CSS', label: 'CSS', icon: FileText },
   { id: 'Java Script', label: 'JavaScript', icon: FileText },
@@ -80,8 +77,6 @@ const nav: { id: View; label: string; icon: typeof LayoutDashboard }[] = [
   { id: 'Node.js', label: 'Node.js', icon: FileText },
   { id: 'XML', label: 'XML', icon: FileText },
   { id: 'XHTML', label: 'XHTML', icon: FileText },
-
-  // Compiled Languages
   { id: 'C', label: 'C Language', icon: Code },
   { id: 'C++', label: 'C++', icon: Code },
   { id: 'C#', label: 'C#', icon: Code },
@@ -92,8 +87,6 @@ const nav: { id: View; label: string; icon: typeof LayoutDashboard }[] = [
   { id: 'Fortran', label: 'Fortran', icon: Code },
   { id: 'Visual Basic', label: 'Visual Basic', icon: Code },
   { id: 'Smalltalk', label: 'Smalltalk', icon: Code },
-
-  // Interpreted Languages
   { id: 'Python', label: 'Python', icon: Code },
   { id: 'Ruby', label: 'Ruby', icon: Code },
   { id: 'Perl', label: 'Perl', icon: Code },
@@ -101,21 +94,13 @@ const nav: { id: View; label: string; icon: typeof LayoutDashboard }[] = [
   { id: 'Lisp', label: 'Lisp', icon: Code },
   { id: 'BASIC', label: 'BASIC', icon: Code },
   { id: 'APL', label: 'APL', icon: Code },
-
-  // Scripting Languages
   { id: 'VBScript', label: 'VBScript', icon: Code },
   { id: 'PowerShell', label: 'Windows PowerShell', icon: Code },
   { id: 'AutoIt', label: 'AutoIt', icon: Code },
   { id: 'R', label: 'R Language', icon: Code },
-
-  // Object-Oriented Programming
   { id: 'Scala', label: 'Scala', icon: Code },
-
-  // AI Tools
   { id: 'Machine-Learning', label: 'Machine Learning', icon: BrainCircuit },
   { id: 'LLM', label: 'Large Language Models', icon: BrainCircuit },
-
-  // Other
   { id: 'ai-studio', label: 'AI Studio', icon: BrainCircuit },
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
