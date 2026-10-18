@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, type FormEvent, type ChangeEvent } from 'react';
+import emailjs from '@emailjs/browser';
 import {
   FileText,
   LayoutDashboard,
@@ -25,6 +26,7 @@ import {
 } from 'lucide-react';
 
 type MainTab = 'home' | 'languages' | 'about' | 'contact' | 'signup' | 'login' | 'workspace' | 'forgot-password';
+type LevelName = 'low' | 'beginner' | 'intermediate';
 
 type View =
   | 'dashboard'
@@ -35,8 +37,30 @@ type View =
   | 'Python'
   | 'PHP'
   | 'SQL'
-  | 'Node.js'
+  | 'C'
+  | 'C++'
+  | 'C#'
+  | '.NET'
+  | 'Java'
+  | 'ALGOL'
+  | 'COBOL'
+  | 'Fortran'
+  | 'Visual Basic'
+  | 'Smalltalk'
   | 'Ruby'
+  | 'Perl'
+  | 'Pascal'
+  | 'Lisp'
+  | 'BASIC'
+  | 'APL'
+  | 'VBScript'
+  | 'PowerShell'
+  | 'AutoIt'
+  | 'R'
+  | 'XML'
+  | 'XHTML'
+  | 'Scala'
+  | 'Node.js'
   | 'Machine-Learning'
   | 'LLM'
   | 'ai-studio'
@@ -1009,12 +1033,29 @@ export default function Home() {
               </h2>
 
               <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setNotice('success:Message sent successfully!');
-                  setContactEmail('');
-                  setContactMsg('');
-                }}
+               onSubmit={async (e) => {
+  e.preventDefault();
+
+  try {
+    await emailjs.send(
+      'service_gzpzmdk',
+      'template_joolpyf',
+      {
+        name: 'Code Nova Website Visitor',
+        from_email: contactEmail,
+        message: contactMsg,
+      },
+      'i-JgCGC6i6gpGEAlE'
+    );
+
+    setNotice('success:Message sent successfully!');
+    setContactEmail('');
+    setContactMsg('');
+  } catch (error) {
+    console.error('Email sending failed:', error);
+    setNotice('error:Message could not be sent. Please try again.');
+  }
+}}
               >
                 <input
                   type="email"
