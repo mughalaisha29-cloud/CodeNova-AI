@@ -254,12 +254,82 @@ const generateLevelPrograms = (langPrefix: string, levelName: string): LevelProg
     output: `<div style="padding:10px; background:#1e293b; border:1px solid #334155; border-radius:6px; color:#38bdf8; font-family:monospace; font-size:12.5px;"><strong>[${levelName}]</strong> Executed ${langPrefix} Program #${i + 1} successfully!</div>`
   }));
 };
+// 1. Low Level Function (50 Programs)
+const generateHtmlLowLevel = (): LevelProgram[] => {
+  const lowTitles = [
+    'Simple HTML Page', 'Heading Tags', 'Paragraph', 'Line Break', 'Horizontal Line',
+    'Bold Text', 'Italic Text', 'Underlined Text', 'Text Highlight', 'Small Text',
+    'Subscript Text', 'Superscript Text', 'Ordered List', 'Unordered List', 'Description List',
+    'Simple Link', 'Open Link in New Tab', 'Email Link', 'Image Display', 'Image with Caption',
+    'Background Color', 'Text Color', 'Font Size', 'Text Alignment', 'Preformatted Text',
+    'Blockquote', 'Abbreviation', 'Deleted and Inserted Text', 'Simple Table', 'Table with Three Columns',
+    'Simple Text Input', 'Password Input', 'Submit Button', 'Radio Buttons', 'Checkboxes',
+    'Dropdown Menu', 'Textarea', 'Email Field', 'Date Picker', 'Number Input',
+    'Telephone Input', 'URL Input', 'Color Picker', 'Range Slider', 'Progress Bar',
+    'Details and Summary', 'Audio Player', 'Video Player', 'HTML Comment', 'Simple Personal Profile'
+  ];
 
+  return lowTitles.map((title, i) => ({
+    id: i + 1,
+    title: `${i + 1}. ${title}`,
+    usage: `Uses: Basic HTML structure for ${title.toLowerCase()}.`,
+    code: `<!DOCTYPE html>\n<html>\n<head>\n  <title>${title}</title>\n</head>\n<body>\n  <h1>${title} Example</h1>\n  <p>This is a low-level HTML sample code for ${title}.</p>\n</body>\n</html>`,
+    output: `<div style="padding:12px; background:#1e293b; color:#38bdf8; font-family:sans-serif; border-radius:6px;"><strong>[Low Level Output]</strong> ${title} rendered successfully!</div>`
+  }));
+};
+
+// 2. Beginner Level Function (50 Programs)
+const generateHtmlBeginnerLevel = (): LevelProgram[] => {
+  const beginnerTitles = [
+    'Student Registration Form', 'Login Form', 'Contact Us Page', 'Student Marks Table', 'Class Timetable',
+    'Online Course List', 'Personal Portfolio', 'FAQ Page', 'Product Information Page', 'Restaurant Menu',
+    'Job Application Form', 'Feedback Form', 'Newsletter Subscription', 'Hotel Booking Form', 'Travel Destination Page',
+    'Library Book Catalog', 'Event Invitation Page', 'News Article Page', 'Personal Biography', 'Image Gallery',
+    'Semantic Webpage Layout', 'FAQ with Multiple Categories', 'Product Comparison Table', 'Online Quiz Form', 'Resume Webpage',
+    'Terms and Conditions Page', 'Privacy Policy Page', 'Event Schedule', 'User Profile Card', 'Book Information Page',
+    'Student Profile Card', 'Image with Caption & Description', 'Travel Booking Form', 'Daily Task List', 'Event Registration Form',
+    'HTML Meter Element', 'Multi-Section Web Page', 'Date and Time Input Form', 'Downloadable File Links', 'Product Details Description List',
+    'HTML Audio Player', 'HTML Video Player', 'Job Application Portal', 'Progress Bar Tracker', 'Searchable Language List',
+    'Contact Information Semantic', 'Weekly Learning Schedule', 'Newsletter Subscription Form', 'Course Selection Form', 'Interactive Registration'
+  ];
+
+  return beginnerTitles.map((title, i) => ({
+    id: i + 1,
+    title: `${i + 1}. ${title}`,
+    usage: `Uses: Standard beginner level use case for ${title.toLowerCase()}.`,
+    code: `<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>${title}</title>\n</head>\n<body>\n  <h2>${title}</h2>\n  <form>\n    <label>Sample Input Field:</label><br>\n    <input type="text" placeholder="Enter details..." required /><br><br>\n    <button type="submit">Submit ${title}</button>\n  </form>\n</body>\n</html>`,
+    output: `<div style="padding:12px; background:#0f172a; color:#10b981; border:1px solid #334155; border-radius:6px;"><strong>[Beginner Level Output]</strong> Executed ${title} successfully!</div>`
+  }));
+};
+
+// 3. Intermediate Level Function (50 Programs)
+const generateHtmlIntermediateLevel = (): LevelProgram[] => {
+  const intermediateTitles = [
+    'Advanced Student Registration Portal', 'Multi-Section Login and Account Recovery Page', 'Advanced Course Catalog', 'Interactive-Style Learning Dashboard', 'Online Examination Paper',
+    'Advanced Student Result Management Page', 'Advanced Employee Information Form', 'Online Survey with Multiple Question Types', 'Event Registration and Schedule', 'Medical Appointment Booking Form',
+    'E-Commerce Product Catalog', 'Shopping Cart Summary', 'Online Payment Information Form', 'Student Performance Dashboard', 'Advanced Survey Form',
+    'Company Employee Directory', 'Library Management System UI', 'Flight Booking Interface', 'Hotel Reservation Portal', 'Customer Support Ticket Form',
+    'Inventory Management Table', 'Financial Budget Planner UI', 'Project Management Dashboard', 'Event Planning Portal', 'Online Quiz Assessment Page',
+    'User Settings & Profile Editor', 'Subscription Plan Comparison', 'Advanced FAQ Knowledge Base', 'Blog Article Layout with Comments', 'Interactive Feedback Portal',
+    'Multi-Step Registration Wizard', 'Advanced Analytics Report UI', 'User Activity Log Table', 'Product Review and Rating Form', 'Customer Testimonial Section',
+    'Interactive Pricing Calculator UI', 'Task Management Kanban Board UI', 'Online Course Enrollment Portal', 'Document Verification Upload UI', 'Advanced Contact Inquiry Hub',
+    'Customer Membership Portal', 'Job Application Tracking UI', 'Healthcare Patient Record Form', 'Real Estate Property Listing UI', 'Restaurant Table Reservation UI',
+    'Event Ticket Booking Portal', 'University Admission Form UI', 'Digital Library Catalog UI', 'Software Bug Tracking Form', 'Advanced System Dashboard UI'
+  ];
+
+  return intermediateTitles.map((title, i) => ({
+    id: i + 1,
+    title: `${i + 1}. ${title}`,
+    usage: `Uses: Advanced semantic layout for ${title.toLowerCase()}.`,
+    code: `<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>${title}</title>\n</head>\n<body>\n  <h1>${title}</h1>\n</body>\n</html>`,
+    output: `<div style="padding:14px; background:#1e293b; border:1px solid #38bdf8; border-radius:8px; color:#38bdf8;"><strong>[Intermediate Level Verified]</strong> Rendered ${title} successfully!</div>`
+  }));
+};
 const multiLevelData: Record<string, LanguageLevels> = {
   Html: {
-    low: generateLevelPrograms('HTML', 'Low Level'),
-    beginner: generateLevelPrograms('HTML', 'Beginner Level'),
-    intermediate: generateLevelPrograms('HTML', 'Intermediate Level')
+    low: generateHtmlLowLevel(),
+    beginner: generateHtmlBeginnerLevel(),
+    intermediate: generateHtmlIntermediateLevel()
   },
   CSS: {
     low: generateLevelPrograms('CSS', 'Low Level'),
@@ -285,6 +355,136 @@ const multiLevelData: Record<string, LanguageLevels> = {
     low: generateLevelPrograms('SQL', 'Low Level'),
     beginner: generateLevelPrograms('SQL', 'Beginner Level'),
     intermediate: generateLevelPrograms('SQL', 'Intermediate Level')
+  },
+  C: {
+    low: generateLevelPrograms('C Language', 'Low Level'),
+    beginner: generateLevelPrograms('C Language', 'Beginner Level'),
+    intermediate: generateLevelPrograms('C Language', 'Intermediate Level')
+  },
+  'C++': {
+    low: generateLevelPrograms('C++', 'Low Level'),
+    beginner: generateLevelPrograms('C++', 'Beginner Level'),
+    intermediate: generateLevelPrograms('C++', 'Intermediate Level')
+  },
+  'C#': {
+    low: generateLevelPrograms('C#', 'Low Level'),
+    beginner: generateLevelPrograms('C#', 'Beginner Level'),
+    intermediate: generateLevelPrograms('C#', 'Intermediate Level')
+  },
+  '.NET': {
+    low: generateLevelPrograms('.NET', 'Low Level'),
+    beginner: generateLevelPrograms('.NET', 'Beginner Level'),
+    intermediate: generateLevelPrograms('.NET', 'Intermediate Level')
+  },
+  Java: {
+    low: generateLevelPrograms('Java', 'Low Level'),
+    beginner: generateLevelPrograms('Java', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Java', 'Intermediate Level')
+  },
+  ALGOL: {
+    low: generateLevelPrograms('ALGOL', 'Low Level'),
+    beginner: generateLevelPrograms('ALGOL', 'Beginner Level'),
+    intermediate: generateLevelPrograms('ALGOL', 'Intermediate Level')
+  },
+  COBOL: {
+    low: generateLevelPrograms('COBOL', 'Low Level'),
+    beginner: generateLevelPrograms('COBOL', 'Beginner Level'),
+    intermediate: generateLevelPrograms('COBOL', 'Intermediate Level')
+  },
+  Fortran: {
+    low: generateLevelPrograms('Fortran', 'Low Level'),
+    beginner: generateLevelPrograms('Fortran', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Fortran', 'Intermediate Level')
+  },
+  'Visual Basic': {
+    low: generateLevelPrograms('Visual Basic', 'Low Level'),
+    beginner: generateLevelPrograms('Visual Basic', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Visual Basic', 'Intermediate Level')
+  },
+  Smalltalk: {
+    low: generateLevelPrograms('Smalltalk', 'Low Level'),
+    beginner: generateLevelPrograms('Smalltalk', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Smalltalk', 'Intermediate Level')
+  },
+  Ruby: {
+    low: generateLevelPrograms('Ruby', 'Low Level'),
+    beginner: generateLevelPrograms('Ruby', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Ruby', 'Intermediate Level')
+  },
+  Perl: {
+    low: generateLevelPrograms('Perl', 'Low Level'),
+    beginner: generateLevelPrograms('Perl', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Perl', 'Intermediate Level')
+  },
+  Pascal: {
+    low: generateLevelPrograms('Pascal', 'Low Level'),
+    beginner: generateLevelPrograms('Pascal', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Pascal', 'Intermediate Level')
+  },
+  Lisp: {
+    low: generateLevelPrograms('Lisp', 'Low Level'),
+    beginner: generateLevelPrograms('Lisp', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Lisp', 'Intermediate Level')
+  },
+  BASIC: {
+    low: generateLevelPrograms('BASIC', 'Low Level'),
+    beginner: generateLevelPrograms('BASIC', 'Beginner Level'),
+    intermediate: generateLevelPrograms('BASIC', 'Intermediate Level')
+  },
+  APL: {
+    low: generateLevelPrograms('APL', 'Low Level'),
+    beginner: generateLevelPrograms('APL', 'Beginner Level'),
+    intermediate: generateLevelPrograms('APL', 'Intermediate Level')
+  },
+  VBScript: {
+    low: generateLevelPrograms('VBScript', 'Low Level'),
+    beginner: generateLevelPrograms('VBScript', 'Beginner Level'),
+    intermediate: generateLevelPrograms('VBScript', 'Intermediate Level')
+  },
+  PowerShell: {
+    low: generateLevelPrograms('PowerShell', 'Low Level'),
+    beginner: generateLevelPrograms('PowerShell', 'Beginner Level'),
+    intermediate: generateLevelPrograms('PowerShell', 'Intermediate Level')
+  },
+  AutoIt: {
+    low: generateLevelPrograms('AutoIt', 'Low Level'),
+    beginner: generateLevelPrograms('AutoIt', 'Beginner Level'),
+    intermediate: generateLevelPrograms('AutoIt', 'Intermediate Level')
+  },
+  R: {
+    low: generateLevelPrograms('R Language', 'Low Level'),
+    beginner: generateLevelPrograms('R Language', 'Beginner Level'),
+    intermediate: generateLevelPrograms('R Language', 'Intermediate Level')
+  },
+  XML: {
+    low: generateLevelPrograms('XML', 'Low Level'),
+    beginner: generateLevelPrograms('XML', 'Beginner Level'),
+    intermediate: generateLevelPrograms('XML', 'Intermediate Level')
+  },
+  XHTML: {
+    low: generateLevelPrograms('XHTML', 'Low Level'),
+    beginner: generateLevelPrograms('XHTML', 'Beginner Level'),
+    intermediate: generateLevelPrograms('XHTML', 'Intermediate Level')
+  },
+  Scala: {
+    low: generateLevelPrograms('Scala', 'Low Level'),
+    beginner: generateLevelPrograms('Scala', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Scala', 'Intermediate Level')
+  },
+  'Node.js': {
+    low: generateLevelPrograms('Node.js', 'Low Level'),
+    beginner: generateLevelPrograms('Node.js', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Node.js', 'Intermediate Level')
+  },
+  'Machine-Learning': {
+    low: generateLevelPrograms('Machine Learning', 'Low Level'),
+    beginner: generateLevelPrograms('Machine Learning', 'Beginner Level'),
+    intermediate: generateLevelPrograms('Machine Learning', 'Intermediate Level')
+  },
+  LLM: {
+    low: generateLevelPrograms('LLM', 'Low Level'),
+    beginner: generateLevelPrograms('LLM', 'Beginner Level'),
+    intermediate: generateLevelPrograms('LLM', 'Intermediate Level')
   }
 };
 
@@ -575,7 +775,6 @@ export default function Home() {
           <p style={{ color: '#94a3b8', fontSize: '16px', maxWidth: '700px', margin: '0 auto' }}>Select a programming category to explore detailed descriptions and high-demand program lists.</p>
         </div>
 
-        {/* 2-2-1 LAYOUT WITH LARGE CARDS MATCHING PICTURE */}
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '30px' }}>
           {CATEGORIES_DATA.map((cat, index) => {
             const isLastCard = index === 4;
@@ -757,7 +956,6 @@ export default function Home() {
             textAlign: 'center', 
             padding: '40px 20px'
           }}>
-            {/* Background Video Layer */}
             <video 
               autoPlay 
               loop 
@@ -777,7 +975,6 @@ export default function Home() {
               Your browser does not support the video tag.
             </video>
 
-            {/* Dark Overlay Layer for Original Colors & Contrast */}
             <div style={{
               position: 'absolute',
               top: 0,
@@ -788,7 +985,6 @@ export default function Home() {
               zIndex: 1
             }} />
 
-            {/* Hero Text & Button Content */}
             <div style={{ position: 'relative', zIndex: 2, maxWidth: '850px' }}>
               <h1 style={{ 
                 fontSize: 'clamp(32px, 6vw, 56px)', 
@@ -890,7 +1086,7 @@ export default function Home() {
 
         {!isLoggedIn && mainTab === 'languages' && renderLanguagesSection()}
 
-        {/* MUKAMMAL ABOUT US SECTION */}
+        {/* ABOUT US SECTION */}
         {!isLoggedIn && mainTab === 'about' && ( 
           <div style={{ padding: '60px 20px', maxWidth: '900px', margin: '0 auto', color: '#cbd5e1', lineHeight: '1.8' }}> 
             <h1 style={{ textAlign: 'center', color: '#fff', fontSize: '38px', fontWeight: 'bold', marginBottom: '30px' }}>About Us</h1> 
@@ -898,52 +1094,52 @@ export default function Home() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>1. Introduction to Learnova AI</h2>
-                <p>Learnova AI is a virtual coding laboratory designed to make programming simple, visual, and highly interactive for students and developers. It provides a modern learning environment where users can explore programming concepts, practice coding, and improve their technical skills. The platform brings educational resources and AI assistance together to support learning. Beginners can explore fundamental concepts through explanations and practical examples. Users can learn at their own pace and gradually develop their abilities. Our goal is to make coding approachable, engaging, and enjoyable for learners with different levels of experience.</p>
+                <p>Learnova AI is a virtual coding laboratory designed to make programming simple, visual, and highly interactive for students and developers. It provides a modern learning environment where users can explore programming concepts, practice coding, and improve their technical skills.</p>
               </section>
 
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>2. Our Mission</h2>
-                <p>The mission of Learnova AI is to make programming education accessible, effective, and enjoyable for learners. We believe students should have opportunities to develop digital skills and explore technology. Our platform focuses on simplifying difficult concepts through organised learning resources and practical coding exercises. We aim to make the first steps of programming less confusing for beginners. We encourage curiosity, creativity, and independent problem-solving. Through regular practice, learners can build confidence and improve their technical knowledge. Our mission is to support students as they work toward their educational and professional goals.</p>
+                <p>The mission of Learnova AI is to make programming education accessible, effective, and enjoyable for learners. We believe students should have opportunities to develop digital skills and explore technology.</p>
               </section>
 
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>3. Interactive Coding Environment</h2>
-                <p>Learnova AI offers a digital learning environment where users can explore programming concepts and practise writing code. Instead of relying only on theoretical information, learners can study examples and experiment with different ideas. This practical approach helps students understand programming logic and syntax. Users can examine code, identify mistakes, and learn how solutions are structured. Breaking complex topics into smaller steps can make learning easier. The platform aims to provide a comfortable workspace for learners with different skill levels. With consistent practice, users can gradually turn their knowledge into practical programming skills.</p>
+                <p>Learnova AI offers a digital learning environment where users can explore programming concepts and practise writing code. Instead of relying only on theoretical information, learners can study examples and experiment with different ideas.</p>
               </section>
 
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>4. AI-Powered Learning Assistance</h2>
-                <p>Artificial intelligence is an important part of the Learnova AI learning experience. The platform includes an AI assistance interface intended to help users explore programming questions and understand possible solutions. AI tools can explain code, clarify difficult concepts, and suggest ways to approach common programming problems when connected to a suitable AI service. Learners can use explanations to understand why a solution works instead of simply copying code. Different approaches can also help users expand their understanding. AI assistance is designed to support independent learning. Our goal is to make technical information easier to explore and understand.</p>
+                <p>Artificial intelligence is an important part of the Learnova AI learning experience. The platform includes an AI assistance interface intended to help users explore programming questions and understand possible solutions.</p>
               </section>
 
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>5. Learning Programming Languages</h2>
-                <p>Learnova AI helps learners explore programming languages and web technologies. HTML, CSS, JavaScript, Python, and other languages provide useful foundations for creating websites, applications, and software solutions. Each technology has its own features and purposes. Learners can begin with fundamental concepts before exploring more advanced topics. Structured examples can help users understand syntax, logic, and common programming patterns. Regular practice makes it easier to recognise how different languages work. Our platform encourages students to explore technologies that match their interests and learning goals.</p>
+                <p>Learnova AI helps learners explore programming languages and web technologies. HTML, CSS, JavaScript, Python, and other languages provide useful foundations for creating websites and applications.</p>
               </section>
 
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>6. Building Problem-Solving Skills</h2>
-                <p>Problem-solving is one of the most important skills in programming. Developers must analyse a situation, identify a challenge, and organise a logical solution. Learnova AI encourages learners to approach problems step by step. Dividing a complicated task into smaller parts can make it easier to understand and solve. Students can practise examining code and comparing different approaches. Mistakes are a natural part of learning and can provide valuable lessons. With regular practice, learners can strengthen logical reasoning, analytical thinking, patience, and confidence. These abilities are useful in programming and many other areas of life.</p>
+                <p>Problem-solving is one of the most important skills in programming. Learnova AI encourages learners to approach problems step by step and strengthen logical reasoning.</p>
               </section>
 
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>7. Resources for Students and Developers</h2>
-                <p>Learnova AI brings programming information and learning resources together in one convenient environment. These resources can include explanations, code examples, exercises, and introductions to important technical concepts. Students can use them to review classroom topics and prepare for practical assignments. Developers can explore coding techniques and refresh their knowledge of different technologies. Organised materials make it easier to find relevant information. Learnova AI aims to create a supportive space where knowledge and practice work together for continuous improvement.</p>
+                <p>Learnova AI brings programming information and learning resources together in one convenient environment to support students and developers.</p>
               </section>
 
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>8. Creativity and Innovation</h2>
-                <p>Creativity and innovation are essential elements of modern programming, and Learnova AI encourages users to turn their ideas into digital projects. Programming allows learners to create websites, applications, interactive tools, and other useful solutions. The platform promotes experimentation so that students can explore different possibilities and develop their own approaches. By practicing regularly, learners can discover how technology can solve everyday problems.</p>
+                <p>Creativity and innovation are essential elements of modern programming, and Learnova AI encourages users to turn their ideas into digital projects.</p>
               </section>
 
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>9. Preparing for Future Opportunities</h2>
-                <p>Technology continues to influence education, business, communication, and many other areas of modern life. Learnova AI aims to help learners develop programming knowledge and digital skills that can support their future opportunities. Understanding programming can open pathways toward web development, software engineering, application development, and other technology-related fields.</p>
+                <p>Learnova AI aims to help learners develop programming knowledge and digital skills that can support their future opportunities in technology fields.</p>
               </section>
 
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>10. Our Vision for the Future</h2>
-                <p>The vision of Learnova AI is to create an innovative virtual coding laboratory that makes programming education more accessible and engaging for everyone. We aim to combine modern technology, interactive learning, and artificial intelligence to improve the way people learn coding. Our goal is to support beginners as they take their first steps and help experienced learners continue developing their skills.</p>
+                <p>The vision of Learnova AI is to create an innovative virtual coding laboratory that makes programming education more accessible and engaging for everyone.</p>
               </section>
             </div>
           </div> 
@@ -963,7 +1159,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* LOGGED IN ADVANCED WORKSPACE */}
+        {/* LOGGED IN WORKSPACE */}
         {isLoggedIn && (
           <div className="workspace" style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
             <aside className={`sidebar ${menuOpen ? 'sidebar-open' : ''}`} style={{ width: '260px', background: '#0b0f19', color: '#f8fafc', display: 'flex', flexDirection: 'column', borderRight: '1px solid #1e293b' }}>
@@ -1196,7 +1392,7 @@ export default function Home() {
                 {view === 'PHP' && renderMultiLevelPrograms('PHP', 'PHP')}
                 {view === 'SQL' && renderMultiLevelPrograms('SQL', 'SQL')}
 
-                {/* FLOATING AI ROBOT BUTTON IN WORKSPACE */}
+                {/* FLOATING AI ROBOT BUTTON */}
                 <div style={{ position: 'fixed', bottom: '25px', right: '25px', zIndex: 1000 }}>
                   <button
                     onClick={() => setView('ai-studio')}
