@@ -254,7 +254,7 @@ const generateLevelPrograms = (langPrefix: string, levelName: string): LevelProg
     output: `<div style="padding:10px; background:#1e293b; border:1px solid #334155; border-radius:6px; color:#38bdf8; font-family:monospace; font-size:12.5px;"><strong>[${levelName}]</strong> Executed ${langPrefix} Program #${i + 1} successfully!</div>`
   }));
 };
-// 1. Low Level Function (50 Programs)
+
 const generateHtmlLowLevel = (): LevelProgram[] => {
   const lowTitles = [
     'Simple HTML Page', 'Heading Tags', 'Paragraph', 'Line Break', 'Horizontal Line',
@@ -268,7 +268,6 @@ const generateHtmlLowLevel = (): LevelProgram[] => {
     'Telephone Input', 'URL Input', 'Color Picker', 'Range Slider', 'Progress Bar',
     'Details and Summary', 'Audio Player', 'Video Player', 'HTML Comment', 'Simple Personal Profile'
   ];
-
   return lowTitles.map((title, i) => ({
     id: i + 1,
     title: `${i + 1}. ${title}`,
@@ -278,7 +277,6 @@ const generateHtmlLowLevel = (): LevelProgram[] => {
   }));
 };
 
-// 2. Beginner Level Function (50 Programs)
 const generateHtmlBeginnerLevel = (): LevelProgram[] => {
   const beginnerTitles = [
     'Student Registration Form', 'Login Form', 'Contact Us Page', 'Student Marks Table', 'Class Timetable',
@@ -292,7 +290,6 @@ const generateHtmlBeginnerLevel = (): LevelProgram[] => {
     'HTML Audio Player', 'HTML Video Player', 'Job Application Portal', 'Progress Bar Tracker', 'Searchable Language List',
     'Contact Information Semantic', 'Weekly Learning Schedule', 'Newsletter Subscription Form', 'Course Selection Form', 'Interactive Registration'
   ];
-
   return beginnerTitles.map((title, i) => ({
     id: i + 1,
     title: `${i + 1}. ${title}`,
@@ -302,7 +299,6 @@ const generateHtmlBeginnerLevel = (): LevelProgram[] => {
   }));
 };
 
-// 3. Intermediate Level Function (50 Programs)
 const generateHtmlIntermediateLevel = (): LevelProgram[] => {
   const intermediateTitles = [
     'Advanced Student Registration Portal', 'Multi-Section Login and Account Recovery Page', 'Advanced Course Catalog', 'Interactive-Style Learning Dashboard', 'Online Examination Paper',
@@ -316,7 +312,6 @@ const generateHtmlIntermediateLevel = (): LevelProgram[] => {
     'Customer Membership Portal', 'Job Application Tracking UI', 'Healthcare Patient Record Form', 'Real Estate Property Listing UI', 'Restaurant Table Reservation UI',
     'Event Ticket Booking Portal', 'University Admission Form UI', 'Digital Library Catalog UI', 'Software Bug Tracking Form', 'Advanced System Dashboard UI'
   ];
-
   return intermediateTitles.map((title, i) => ({
     id: i + 1,
     title: `${i + 1}. ${title}`,
@@ -325,6 +320,7 @@ const generateHtmlIntermediateLevel = (): LevelProgram[] => {
     output: `<div style="padding:14px; background:#1e293b; border:1px solid #38bdf8; border-radius:8px; color:#38bdf8;"><strong>[Intermediate Level Verified]</strong> Rendered ${title} successfully!</div>`
   }));
 };
+
 const multiLevelData: Record<string, LanguageLevels> = {
   Html: {
     low: generateHtmlLowLevel(),
@@ -653,31 +649,14 @@ export default function Home() {
     }
   }
 
- function handleSendMessage(e?: React.FormEvent) {
-  if (e) {
-    e.preventDefault();
-  }
-
-  // Check karein ke input khali toh nahi
-  if (!inputMsg || (inputMsg.trim() === '' && !selectedFile)) {
-    return;
-  }
-
-  const attachedName = selectedFile ? selectedFile.name : "";
-  const userMessage = inputMsg;
-
-  // Pehle user ka message chat mein add karein
-  setChatMessages(prev => [...prev, { sender: 'user', text: userMessage }]);
-  setInputMsg('');
-  setSelectedFile(null);
-
- const handleSendMessage = async (e?: React.FormEvent) => {
+  // ✅ Fixed AI Assistant Handler connected to /api/rag backend
+  const handleSendMessage = async (e?: FormEvent) => {
     if (e) e.preventDefault();
     if (!inputMsg.trim() && !selectedFile) return;
 
     const userMessage = inputMsg;
     const fileContext = selectedFile ? selectedFile.name : '';
-    
+
     setInputMsg('');
     setSelectedFile(null);
 
@@ -939,14 +918,12 @@ export default function Home() {
             >
               <X size={18} />
             </button>
-
             <div style={{ fontSize: '12px', color: '#ec4899', fontWeight: 'bold', textTransform: 'uppercase', marginBottom: '8px' }}>PROGRAM SPECIFICATION DETAIL</div>
             <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#fff', marginBottom: '15px' }}>{activeDetailProgram.name}</h2>
             
             <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '12px', padding: '18px', color: '#cbd5e1', fontSize: '14px', lineHeight: '1.7', marginBottom: '20px' }}>
               <p style={{ margin: 0 }}>{activeDetailProgram.fullDetailParagraph}</p>
             </div>
-
             <div style={{ background: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.3)', borderRadius: '12px', padding: '16px', color: '#38bdf8', fontSize: '13px', lineHeight: '1.6' }}>
               <strong>💡 Execution Notice:</strong> You can test and compile this program code using our <strong>Learnova AI Robot Engine</strong> or inside your workspace. Just submit your logic query to the AI Robot and it will generate and run the live verified output for you!
             </div>
@@ -1009,7 +986,6 @@ export default function Home() {
               <source src="/hero-video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-
             <div style={{
               position: 'absolute',
               top: 0,
@@ -1019,7 +995,6 @@ export default function Home() {
               background: 'linear-gradient(rgba(9, 13, 22, 0.65), rgba(9, 13, 22, 0.85))',
               zIndex: 1
             }} />
-
             <div style={{ position: 'relative', zIndex: 2, maxWidth: '850px' }}>
               <h1 style={{ 
                 fontSize: 'clamp(32px, 6vw, 56px)', 
@@ -1067,7 +1042,6 @@ export default function Home() {
                 <input type="password" value={signupConfirmPassword} onChange={(e) => setSignupConfirmPassword(e.target.value)} placeholder="Confirm Password" style={{ width: '100%', padding: '11px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '13.5px', marginBottom: '15px' }} />
                 
                 {renderNotice()}
-
                 <button type="submit" style={{ width: '100%', background: 'linear-gradient(135deg, #ec4899, #4f46e5)', color: '#fff', border: 'none', padding: '12px', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', fontSize: '14px' }}>Register & Continue</button>
               </form>
             </div>
@@ -1086,9 +1060,7 @@ export default function Home() {
                 <div style={{ textAlign: 'right', marginBottom: '15px' }}>
                   <button type="button" onClick={() => handlePublicNav('forgot-password')} style={{ background: 'none', border: 'none', color: '#38bdf8', cursor: 'pointer', fontSize: '12px' }}>Forgot Password?</button>
                 </div>
-
                 {renderNotice()}
-
                 <button type="submit" disabled={loginAttempts >= 4} style={{ width: '100%', background: loginAttempts >= 4 ? '#334155' : '#4f46e5', color: '#fff', border: 'none', padding: '12px', borderRadius: '8px', fontWeight: 600, cursor: loginAttempts >= 4 ? 'not-allowed' : 'pointer', fontSize: '14px' }}>{loginAttempts >= 4 ? 'Locked Out' : 'Log In'}</button>
               </form>
             </div>
@@ -1121,57 +1093,46 @@ export default function Home() {
 
         {!isLoggedIn && mainTab === 'languages' && renderLanguagesSection()}
 
-        {/* ABOUT US SECTION */}
         {!isLoggedIn && mainTab === 'about' && ( 
           <div style={{ padding: '60px 20px', maxWidth: '900px', margin: '0 auto', color: '#cbd5e1', lineHeight: '1.8' }}> 
             <h1 style={{ textAlign: 'center', color: '#fff', fontSize: '38px', fontWeight: 'bold', marginBottom: '30px' }}>About Us</h1> 
-            
             <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>1. Introduction to Learnova AI</h2>
                 <p>Learnova AI is a virtual coding laboratory designed to make programming simple, visual, and highly interactive for students and developers. It provides a modern learning environment where users can explore programming concepts, practice coding, and improve their technical skills.</p>
               </section>
-
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>2. Our Mission</h2>
                 <p>The mission of Learnova AI is to make programming education accessible, effective, and enjoyable for learners. We believe students should have opportunities to develop digital skills and explore technology.</p>
               </section>
-
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>3. Interactive Coding Environment</h2>
                 <p>Learnova AI offers a digital learning environment where users can explore programming concepts and practise writing code. Instead of relying only on theoretical information, learners can study examples and experiment with different ideas.</p>
               </section>
-
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>4. AI-Powered Learning Assistance</h2>
                 <p>Artificial intelligence is an important part of the Learnova AI learning experience. The platform includes an AI assistance interface intended to help users explore programming questions and understand possible solutions.</p>
               </section>
-
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>5. Learning Programming Languages</h2>
                 <p>Learnova AI helps learners explore programming languages and web technologies. HTML, CSS, JavaScript, Python, and other languages provide useful foundations for creating websites and applications.</p>
               </section>
-
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>6. Building Problem-Solving Skills</h2>
                 <p>Problem-solving is one of the most important skills in programming. Learnova AI encourages learners to approach problems step by step and strengthen logical reasoning.</p>
               </section>
-
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>7. Resources for Students and Developers</h2>
                 <p>Learnova AI brings programming information and learning resources together in one convenient environment to support students and developers.</p>
               </section>
-
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>8. Creativity and Innovation</h2>
                 <p>Creativity and innovation are essential elements of modern programming, and Learnova AI encourages users to turn their ideas into digital projects.</p>
               </section>
-
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>9. Preparing for Future Opportunities</h2>
                 <p>Learnova AI aims to help learners develop programming knowledge and digital skills that can support their future opportunities in technology fields.</p>
               </section>
-
               <section style={{ background: '#0f172a', padding: '25px', borderRadius: '16px', border: '1px solid #1e293b' }}>
                 <h2 style={{ color: '#ec4899', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px' }}>10. Our Vision for the Future</h2>
                 <p>The vision of Learnova AI is to create an innovative virtual coding laboratory that makes programming education more accessible and engaging for everyone.</p>
@@ -1228,7 +1189,6 @@ export default function Home() {
                 </button>
               </div>
             </aside>
-
             <section className="main-area" style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#0a0d14' }}>
               <header className="topbar" style={{ height: '60px', borderBottom: '1px solid #1e293b', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', background: '#0f172a' }}>
                 <div className="top-left" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
@@ -1325,7 +1285,6 @@ export default function Home() {
                           >
                             <ArrowLeft size={16} /> Back
                           </button>
-
                           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                             <div style={{
                               width: '42px',
@@ -1394,23 +1353,19 @@ export default function Home() {
                             </button>
                           </div>
                         )}
-
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#090d16', padding: '8px 12px', borderRadius: '12px', border: '1px solid #334155' }}>
                           <button type="button" onClick={() => setPlusMenuOpen(!plusMenuOpen)} style={{ background: '#1e293b', border: 'none', color: '#fff', width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
                             <Plus size={18} />
                           </button>
-
                           <input
                             value={inputMsg}
                             onChange={(e) => setInputMsg(e.target.value)}
                             placeholder="Ask AI Code Generator or paste code..."
                             style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', color: '#fff', fontSize: '13.5px' }}
                           />
-
                           <button type="button" onClick={() => setIsRecording(!isRecording)} style={{ background: isRecording ? '#ef4444' : 'transparent', border: 'none', color: '#cbd5e1', padding: '6px', borderRadius: '6px', cursor: 'pointer' }}>
                             <Mic size={18} color={isRecording ? '#fff' : '#cbd5e1'} />
                           </button>
-
                           <button type="submit" style={{ background: 'linear-gradient(135deg, #ec4899, #4f46e5)', border: 'none', color: '#fff', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px' }}>
                             <Send size={15} /> Send
                           </button>
@@ -1462,5 +1417,4 @@ export default function Home() {
       )}
     </main>
   );
-}
 }
