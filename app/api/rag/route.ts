@@ -1,33 +1,78 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-// Vercel par save kiye gaye OPENAI_API_KEY se initialize hoga
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 export async function POST(request: Request) {
   try {
+    // Check API key when a request arrives
+    const apiKey = process.env.OPENAI_API_KEY;
+
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: 'OPENAI_API_KEY is missing in environment variables.' },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { prompt, context } = body;
 
-    // Real OpenAI ChatGPT API ko call kar rahe hain
+    if (typeof prompt !== 'string' || !prompt.trim()) {
+      return NextResponse.json(
+        { error: 'Please provide a valid prompt.' },
+        { status: 400 }
+      );
+    }
+
+    const openai = new OpenAI({ apiKey });
+
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: 'gpt-4o-mini',
       messages: [
-        { role: "system", content: "You are a helpful AI coding assistant for Learnova AI." },
-        { role: "user", content: context ? `Context: ${context}\n\nQuestion: ${prompt}` : prompt }
+        {
+          role: 'system',
+          content:
+            'You are Learnova AI, a helpful coding assistant. ' +
+            'Answer the user’s actual question instead of repeating it. ' +
+            'Solve programming tasks, debug code, explain errors, and ' +
+            'provide complete, correct code when requested. ' +
+            'Follow the requested programming language and format. ' +
+            'Do not return generic status messages in place of an answer.',
+        },
+        {
+          role: 'user',
+          content:
+            typeof context === 'string' && context.trim()
+              ? `Context:\n${context}\n\nQuestion:\n${prompt}`
+              : prompt,
+        },
       ],
     });
 
-    const reply = completion.choices[0].message.content;
+    const reply = completion.choices[0]?.message?.content;
 
-    return NextResponse.json({ result: reply }, { status: 200 });
-  } catch (error: any) {
-    console.error("OpenAI Error:", error);
+    if (!reply) {
+      return NextResponse.json(
+        { error: 'The AI returned an empty response.' },
+        { status: 502 }
+      );
+    }
+
     return NextResponse.json(
-      { error: error.message || 'Error generating response' },
+      { result: reply },
+      { status: 200 }
+    );
+  } catch (error: unknown) {
+    console.error('OpenAI API request failed:', error);
+
+    const message =
+      error instanceof Error
+        ? error.message
+        : 'Error generating response';
+
+    return NextResponse.json(
+      { error: message },
       { status: 500 }
     );
   }
 }
+
