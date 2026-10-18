@@ -30,6 +30,7 @@ type LevelName = 'low' | 'beginner' | 'intermediate';
 
 type View =
   | 'dashboard'
+  | 'languages-hub'
   | 'Html'
   | 'CSS'
   | 'Java Script'
