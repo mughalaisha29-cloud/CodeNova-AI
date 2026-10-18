@@ -653,11 +653,30 @@ export default function Home() {
     }
   }
 
-  function handleSendMessage(e?: FormEvent) {
-    e?.preventDefault();
+ function handleSendMessage(e?: React.FormEvent) {
+  if (e) {
+    e.preventDefault();
+  }
+
+  // Check karein ke input khali toh nahi
+  if (!inputMsg || (inputMsg.trim() === '' && !selectedFile)) {
+    return;
+  }
+
+  const attachedName = selectedFile ? selectedFile.name : "";
+  const userMessage = inputMsg;
+
+  // Pehle user ka message chat mein add karein
+  setChatMessages(prev => [...prev, { sender: 'user', text: userMessage }]);
+  setInputMsg('');
+  setSelectedFile(null);
+
+ // RAG API ko call karne ka secure code
+  const handleSendMessage = (e?: FormEvent) => {
+    if (e) e.preventDefault();
     if (!inputMsg.trim() && !selectedFile) return;
 
-    const attachedName = selectedFile ? selectedFile.name : undefined;
+    const attachedName = selectedFile ? selectedFile.name : '';
     const userMessage = inputMsg;
 
     setChatMessages((prev) => [
@@ -668,11 +687,30 @@ export default function Home() {
     setInputMsg('');
     setSelectedFile(null);
 
-    setTimeout(() => {
-      const aiReply = `✨ **Learnova AI Response:**\nI have analyzed your request regarding ${selectedFile ? selectedFile.name : 'your code'}. Everything looks clean and structured!`;
-      setChatMessages((prev) => [...prev, { sender: 'ai', text: aiReply }]);
-    }, 700);
-  }
+    // Call Backend RAG API Route (/api/rag)
+    fetch('/api/rag', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prompt: userMessage,
+        context: attachedName
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          console.error("RAG Error:", data.error);
+          setChatMessages((prev) => [...prev, { sender: 'ai', text: `Error: ${data.error}` }]);
+          return;
+        }
+        // OpenAI ka RAG answer chat mein show karne ke liye
+        setChatMessages((prev) => [...prev, { sender: 'ai', text: data.result }]);
+      })
+      .catch(err => {
+        console.error("Failed to connect:", err);
+        setChatMessages((prev) => [...prev, { sender: 'ai', text: 'Failed to connect to RAG backend.' }]);
+      });
+  };
 
   const renderNotice = () => {
     if (!notice) return null;
@@ -1427,4 +1465,5 @@ export default function Home() {
       )}
     </main>
   );
+}
 }
