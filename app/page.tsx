@@ -671,45 +671,42 @@ export default function Home() {
   setInputMsg('');
   setSelectedFile(null);
 
- // RAG API ko call karne ka secure code
-  const handleSendMessage = (e?: FormEvent) => {
+ const handleSendMessage = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (!inputMsg.trim() && !selectedFile) return;
 
-    const attachedName = selectedFile ? selectedFile.name : '';
     const userMessage = inputMsg;
-
-    setChatMessages((prev) => [
-      ...prev,
-      { sender: 'user', text: userMessage || `Attachment: ${attachedName}`, fileAttachment: attachedName }
-    ]);
-
+    const fileContext = selectedFile ? selectedFile.name : '';
+    
     setInputMsg('');
     setSelectedFile(null);
 
-    // Call Backend RAG API Route (/api/rag)
-    fetch('/api/rag', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        prompt: userMessage,
-        context: attachedName
-      })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.error) {
-          console.error("RAG Error:", data.error);
-          setChatMessages((prev) => [...prev, { sender: 'ai', text: `Error: ${data.error}` }]);
-          return;
-        }
-        // OpenAI ka RAG answer chat mein show karne ke liye
-        setChatMessages((prev) => [...prev, { sender: 'ai', text: data.result }]);
-      })
-      .catch(err => {
-        console.error("Failed to connect:", err);
-        setChatMessages((prev) => [...prev, { sender: 'ai', text: 'Failed to connect to RAG backend.' }]);
+    const updatedMessages = [...chatMessages, { sender: 'user' as const, text: userMessage }];
+    setChatMessages(updatedMessages);
+
+    try {
+      const response = await fetch('/api/rag', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: userMessage,
+          context: fileContext,
+        }),
       });
+
+      const data = await response.json();
+
+      if (response.ok && data.result) {
+        setChatMessages([...updatedMessages, { sender: 'ai' as const, text: data.result }]);
+      } else {
+        setChatMessages([...updatedMessages, { sender: 'ai' as const, text: `Error: ${data.error || 'Something went wrong'}` }]);
+      }
+    } catch (error: any) {
+      console.error('Chat Error:', error);
+      setChatMessages([...updatedMessages, { sender: 'ai' as const, text: 'Network error: Failed to connect to Learnova AI backend.' }]);
+    }
   };
 
   const renderNotice = () => {
