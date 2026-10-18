@@ -1,20 +1,33 @@
 import { NextResponse } from 'next/server';
+import OpenAI from 'openai';
+
+// Vercel par save kiye gaye OPENAI_API_KEY se initialize hoga
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { prompt, context } = body;
 
-    let reply = `✨ **Learnova AI Engine Response:**\n\nI have successfully analyzed your query: "${prompt}".`;
-    
-    if (context) {
-      reply += `\n📎 **Attached File:** ${context} has been processed successfully.`;
-    }
+    // Real OpenAI ChatGPT API ko call kar rahe hain
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: "You are a helpful AI coding assistant for Learnova AI." },
+        { role: "user", content: context ? `Context: ${context}\n\nQuestion: ${prompt}` : prompt }
+      ],
+    });
 
-    reply += `\n\n💡 **Status:** Code logic looks great! Everything is structured correctly. Let me know if you need help with further debugging or new logic generation.`;
+    const reply = completion.choices[0].message.content;
 
     return NextResponse.json({ result: reply }, { status: 200 });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+    console.error("OpenAI Error:", error);
+    return NextResponse.json(
+      { error: error.message || 'Error generating response' },
+      { status: 500 }
+    );
   }
 }
