@@ -245,82 +245,26 @@ const CATEGORIES_DATA: LanguageCategory[] = [
   }
 ];
 
-const generateLevelPrograms = (langPrefix: string, levelName: string): LevelProgram[] => {
-  return Array.from({ length: 50 }, (_, i) => ({
-    id: i + 1,
-    title: `${levelName} Program #${i + 1}`,
-    usage: `Standard ${levelName.toLowerCase()} use case for ${langPrefix.toLowerCase()} exercise #${i + 1}.`,
-    code: `<div class="program-${i + 1}">\n  <h3>${langPrefix} ${levelName} Sample #${i + 1}</h3>\n</div>`,
-    output: `<div style="padding:10px; background:#1e293b; border:1px solid #334155; border-radius:6px; color:#38bdf8; font-family:monospace; font-size:12.5px;"><strong>[${levelName}]</strong> Executed ${langPrefix} Program #${i + 1} successfully!</div>`
-  }));
-};
+interface LevelProgram {
+  id: number;
+  title: string;
+  usage: string;
+  code: string;
+  output: string;
+}
 
-const generateHtmlLowLevel = (): LevelProgram[] => {
-  const lowTitles = [
-    'Simple HTML Page', 'Heading Tags', 'Paragraph', 'Line Break', 'Horizontal Line',
-    'Bold Text', 'Italic Text', 'Underlined Text', 'Text Highlight', 'Small Text',
-    'Subscript Text', 'Superscript Text', 'Ordered List', 'Unordered List', 'Description List',
-    'Simple Link', 'Open Link in New Tab', 'Email Link', 'Image Display', 'Image with Caption',
-    'Background Color', 'Text Color', 'Font Size', 'Text Alignment', 'Preformatted Text',
-    'Blockquote', 'Abbreviation', 'Deleted and Inserted Text', 'Simple Table', 'Table with Three Columns',
-    'Simple Text Input', 'Password Input', 'Submit Button', 'Radio Buttons', 'Checkboxes',
-    'Dropdown Menu', 'Textarea', 'Email Field', 'Date Picker', 'Number Input',
-    'Telephone Input', 'URL Input', 'Color Picker', 'Range Slider', 'Progress Bar',
-    'Details and Summary', 'Audio Player', 'Video Player', 'HTML Comment', 'Simple Personal Profile'
-  ];
-  return lowTitles.map((title, i) => ({
-    id: i + 1,
-    title: `${i + 1}. ${title}`,
-    usage: `Uses: Basic HTML structure for ${title.toLowerCase()}.`,
-    code: `<!DOCTYPE html>\n<html>\n<head>\n  <title>${title}</title>\n</head>\n<body>\n  <h1>${title} Example</h1>\n  <p>This is a low-level HTML sample code for ${title}.</p>\n</body>\n</html>`,
-    output: `<div style="padding:12px; background:#1e293b; color:#38bdf8; font-family:sans-serif; border-radius:6px;"><strong>[Low Level Output]</strong> ${title} rendered successfully!</div>`
+const createPrograms = (
+  items: {
+    title: string;
+    usage: string;
+    code: string;
+    output: string;
+  }[]
+): LevelProgram[] =>
+  items.map((item, index) => ({
+    id: index + 1,
+    ...item,
   }));
-};
-
-const generateHtmlBeginnerLevel = (): LevelProgram[] => {
-  const beginnerTitles = [
-    'Student Registration Form', 'Login Form', 'Contact Us Page', 'Student Marks Table', 'Class Timetable',
-    'Online Course List', 'Personal Portfolio', 'FAQ Page', 'Product Information Page', 'Restaurant Menu',
-    'Job Application Form', 'Feedback Form', 'Newsletter Subscription', 'Hotel Booking Form', 'Travel Destination Page',
-    'Library Book Catalog', 'Event Invitation Page', 'News Article Page', 'Personal Biography', 'Image Gallery',
-    'Semantic Webpage Layout', 'FAQ with Multiple Categories', 'Product Comparison Table', 'Online Quiz Form', 'Resume Webpage',
-    'Terms and Conditions Page', 'Privacy Policy Page', 'Event Schedule', 'User Profile Card', 'Book Information Page',
-    'Student Profile Card', 'Image with Caption & Description', 'Travel Booking Form', 'Daily Task List', 'Event Registration Form',
-    'HTML Meter Element', 'Multi-Section Web Page', 'Date and Time Input Form', 'Downloadable File Links', 'Product Details Description List',
-    'HTML Audio Player', 'HTML Video Player', 'Job Application Portal', 'Progress Bar Tracker', 'Searchable Language List',
-    'Contact Information Semantic', 'Weekly Learning Schedule', 'Newsletter Subscription Form', 'Course Selection Form', 'Interactive Registration'
-  ];
-  return beginnerTitles.map((title, i) => ({
-    id: i + 1,
-    title: `${i + 1}. ${title}`,
-    usage: `Uses: Standard beginner level use case for ${title.toLowerCase()}.`,
-    code: `<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>${title}</title>\n</head>\n<body>\n  <h2>${title}</h2>\n  <form>\n    <label>Sample Input Field:</label><br>\n    <input type="text" placeholder="Enter details..." required /><br><br>\n    <button type="submit">Submit ${title}</button>\n  </form>\n</body>\n</html>`,
-    output: `<div style="padding:12px; background:#0f172a; color:#10b981; border:1px solid #334155; border-radius:6px;"><strong>[Beginner Level Output]</strong> Executed ${title} successfully!</div>`
-  }));
-};
-
-const generateHtmlIntermediateLevel = (): LevelProgram[] => {
-  const intermediateTitles = [
-    'Advanced Student Registration Portal', 'Multi-Section Login and Account Recovery Page', 'Advanced Course Catalog', 'Interactive-Style Learning Dashboard', 'Online Examination Paper',
-    'Advanced Student Result Management Page', 'Advanced Employee Information Form', 'Online Survey with Multiple Question Types', 'Event Registration and Schedule', 'Medical Appointment Booking Form',
-    'E-Commerce Product Catalog', 'Shopping Cart Summary', 'Online Payment Information Form', 'Student Performance Dashboard', 'Advanced Survey Form',
-    'Company Employee Directory', 'Library Management System UI', 'Flight Booking Interface', 'Hotel Reservation Portal', 'Customer Support Ticket Form',
-    'Inventory Management Table', 'Financial Budget Planner UI', 'Project Management Dashboard', 'Event Planning Portal', 'Online Quiz Assessment Page',
-    'User Settings & Profile Editor', 'Subscription Plan Comparison', 'Advanced FAQ Knowledge Base', 'Blog Article Layout with Comments', 'Interactive Feedback Portal',
-    'Multi-Step Registration Wizard', 'Advanced Analytics Report UI', 'User Activity Log Table', 'Product Review and Rating Form', 'Customer Testimonial Section',
-    'Interactive Pricing Calculator UI', 'Task Management Kanban Board UI', 'Online Course Enrollment Portal', 'Document Verification Upload UI', 'Advanced Contact Inquiry Hub',
-    'Customer Membership Portal', 'Job Application Tracking UI', 'Healthcare Patient Record Form', 'Real Estate Property Listing UI', 'Restaurant Table Reservation UI',
-    'Event Ticket Booking Portal', 'University Admission Form UI', 'Digital Library Catalog UI', 'Software Bug Tracking Form', 'Advanced System Dashboard UI'
-  ];
-  return intermediateTitles.map((title, i) => ({
-    id: i + 1,
-    title: `${i + 1}. ${title}`,
-    usage: `Uses: Advanced semantic layout for ${title.toLowerCase()}.`,
-    code: `<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>${title}</title>\n</head>\n<body>\n  <h1>${title}</h1>\n</body>\n</html>`,
-    output: `<div style="padding:14px; background:#1e293b; border:1px solid #38bdf8; border-radius:8px; color:#38bdf8;"><strong>[Intermediate Level Verified]</strong> Rendered ${title} successfully!</div>`
-  }));
-};
-
 const multiLevelData: Record<string, LanguageLevels> = {
   Html: {
     low: generateHtmlLowLevel(),
