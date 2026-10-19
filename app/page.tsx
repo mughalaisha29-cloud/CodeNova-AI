@@ -648,45 +648,102 @@ export default function Home() {
       setPlusMenuOpen(false);
     }
   }
+const handleSendMessage = async (e?: FormEvent) => {
+  if (e) e.preventDefault();
 
-  // ✅ Fixed AI Assistant Handler connected to /api/rag backend
-  const handleSendMessage = async (e?: FormEvent) => {
-    if (e) e.preventDefault();
-    if (!inputMsg.trim() && !selectedFile) return;
+  if (!inputMsg.trim() && !selectedFile) return;
 
-    const userMessage = inputMsg;
-    const fileContext = selectedFile ? selectedFile.name : '';
+  const userMessage = inputMsg.trim();
+  const file = selectedFile;
 
-    setInputMsg('');
-    setSelectedFile(null);
+  const displayText = userMessage ||
+    (file ? `Please help me with the file: ${file.name}` : '');
 
-    const updatedMessages = [...chatMessages, { sender: 'user' as const, text: userMessage }];
-    setChatMessages(updatedMessages);
+  let fileContext = '';
 
-    try {
-      const response = await fetch('/api/rag', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          prompt: userMessage,
-          context: fileContext,
-        }),
-      });
+  if (file) {
+    const textExtensions =
+      /\.(txt|md|json|csv|js|jsx|ts|tsx|py|html|css|sql)$/i;
 
-      const data = await response.json();
+    const isTextFile =
+      file.type.startsWith('text/') ||
+      textExtensions.test(file.name);
 
-      if (response.ok && data.result) {
-        setChatMessages([...updatedMessages, { sender: 'ai' as const, text: data.result }]);
-      } else {
-        setChatMessages([...updatedMessages, { sender: 'ai' as const, text: `Error: ${data.error || 'Something went wrong'}` }]);
+    if (isTextFile && file.size <= 100_000) {
+      try {
+        fileContext =
+          `File name: ${file.name}\nFile content:\n${await file.text()}`;
+      } catch {
+        fileContext = `Could not read file: ${file.name}`;
       }
-    } catch (error: any) {
-      console.error('Chat Error:', error);
-      setChatMessages([...updatedMessages, { sender: 'ai' as const, text: 'Network error: Failed to connect to Learnova AI backend.' }]);
+    } else {
+      fileContext =
+        `Attached file: ${file.name}. Its content could not be read.`;
     }
-  };
+  }
+
+  const updatedMessages = [
+    ...chatMessages,
+    {
+      sender: 'user' as const,
+      text: displayText,
+      ...(file ? { fileAttachment: file.name } : {}),
+    },
+  ];
+
+  setChatMessages(updatedMessages);
+  setInputMsg('');
+  setSelectedFile(null);
+  setPlusMenuOpen(false);
+
+  try {
+    const response = await fetch('/api/rag', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prompt: displayText,
+        context: fileContext,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data.error || `Request failed: ${response.status}`
+      );
+    }
+
+    if (typeof data.result !== 'string' || !data.result.trim()) {
+      throw new Error('AI se response nahi mila. Dobara try karein.');
+    }
+
+    setChatMessages([
+      ...updatedMessages,
+      {
+        sender: 'ai' as const,
+        text: data.result,
+      },
+    ]);
+  } catch (error: unknown) {
+    console.error('Learnova AI Error:', error);
+
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : 'Backend se connection nahi ho saka.';
+
+    setChatMessages([
+      ...updatedMessages,
+      {
+        sender: 'ai' as const,
+        text: `Error: ${errorMessage}`,
+      },
+    ]);
+  }
+};
 
   const renderNotice = () => {
     if (!notice) return null;
